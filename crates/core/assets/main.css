@@ -1,0 +1,50 @@
+.messages-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.message-container {
+    margin-bottom: 13px;
+    padding: 10px 15px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.textarea-wrapper {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 800px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Textarea styling within the wrapper */
+.textarea-wrapper textarea {
+    padding: 12px 15px;
+    border: none;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    resize: none;
+    outline: none;
+    height: 30px; /* Adjust based on your needs */
+}
+
+.sub-input-box-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}

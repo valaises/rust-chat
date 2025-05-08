@@ -1,0 +1,37 @@
+[package]
+name = "core"
+version = "0.1.0"
+edition = "2024"
+
+
+[[bin]]
+name = "core"
+path = "src/main.rs"
+
+
+[dependencies]
+reqwest.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+tokio = {version = "1.44.2", features = ["full"], optional=true}
+dioxus = { version = "0.6.0", features = ["router", "fullstack"]}
+gloo-timers = { version = "0.3.0", features = ["futures"]}
+bytes = "1.10.1"
+futures = "0.3.31"
+image = "0.25.6"
+regex = "1.11.1"
+base64 = "0.22.1"
+async-stream = "0.3.6"
+comrak = "0.39"
+
+[features]
+server = [
+    "dioxus/server",
+    "dep:tokio",
+]
+
+default = ["web"]
+web = ["dioxus/web"]
+desktop = ["dioxus/desktop"]
+mobile = ["dioxus/mobile"]
