@@ -24,7 +24,7 @@ pub async fn model_polling_service(_rx: UnboundedReceiver<()>) {
                 error!("Failed to fetch models: {}", err);
             }
         };
-        TimeoutFuture::new(1000).await;
+        TimeoutFuture::new(30_000).await;
     }
 }
 

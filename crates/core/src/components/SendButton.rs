@@ -22,72 +22,78 @@ pub fn SendButton(props: SendButtonProps) -> Element {
 
     let button_on_click = move |_| {
         let value = chat_input_value.read().clone();
-        if !value.trim().is_empty() {
-            // Add user message
-            let assistant_message_index;
-            {
-                let mut messages = sh.messages.write();
-                messages.push(
-                    Message {
-                        role: "user".to_string(),
-                        content: value,
-                    }
-                );
+        
+        if value.trim().is_empty() {
+            return;
+        }
+        
+        // Add user message
+        let assistant_message_index;
+        {
+            // sh.empty_space_height.set(1000usize);
+            // info!("Set empty_space_height to 1000");
+            let mut messages = sh.messages.write();
+            messages.push(
+                Message {
+                    role: "user".to_string(),
+                    content: value,
+                }
+            );
+            sh.scrolled_to_bottom_element.set(false);
 
-                // Create a new assistant message with empty content
-                assistant_message_index = messages.len();
-                messages.push(
-                    Message {
-                        role: "assistant".to_string(),
-                        content: "".to_string(),
-                    }
-                );
-            }
+            // Create a new assistant message with empty content
+            assistant_message_index = messages.len();
+            messages.push(
+                Message {
+                    role: "assistant".to_string(),
+                    content: "".to_string(),
+                }
+            );
+        }
 
-            let model = sh.active_model.read().clone().unwrap().id;
+        let model = sh.active_model.read().clone().unwrap().id;
 
-            // Convert messages to OMessages for the API
-            let omessages = sh.messages.read().iter()
-                .filter(|m| m.role == "user" || m.role == "assistant")
-                .map(|m| openai::OMessage::new(
-                    m.role.clone(),
-                    m.content.clone(),
-                ))
-                .collect::<Vec<_>>();
+        // Convert messages to OMessages for the API
+        let omessages = sh.messages.read().iter()
+            .filter(|m| m.role == "user" || m.role == "assistant")
+            .map(|m| openai::OMessage::new(
+                m.role.clone(),
+                m.content.clone(),
+            ))
+            .collect::<Vec<_>>();
 
-            // Start streaming the response
-            spawn(async move {
-                match test_stream_frontend(omessages, model).await {
-                    Ok(stream) => {
-                        let mut received_chunks = Vec::new();
+        // Start streaming the response
+        spawn(async move {
+            match test_stream_frontend(omessages, model).await {
+                Ok(stream) => {
+                    let mut received_chunks = Vec::new();
 
-                        // Process each chunk as it arrives
-                        let mut stream = pin!(stream);
-                        while let Some(chunk) = stream.next().await {
-                            received_chunks.push(chunk);
-                            {
-                                let mut messages = sh.messages.write();
-                                if let Some(assistant_message) = messages.get_mut(assistant_message_index) {
-                                    // Update with all chunks received so far
-                                    assistant_message.content = extract_content_from_chunks(&received_chunks);
-                                }
+                    // Process each chunk as it arrives
+                    let mut stream = pin!(stream);
+                    while let Some(chunk) = stream.next().await {
+                        received_chunks.push(chunk);
+                        {
+                            let mut messages = sh.messages.write();
+                            if let Some(assistant_message) = messages.get_mut(assistant_message_index) {
+                                // Update with all chunks received so far
+                                assistant_message.content = extract_content_from_chunks(&received_chunks);
                             }
                         }
-                        info!("Stream completed. Received {} chunks in total.", received_chunks.len());
-                    },
-                    Err(e) => {
-                        info!("Failed to start stream: {}", e);
-                        let mut messages = sh.messages.write();
-                        if let Some(assistant_message) = messages.get_mut(assistant_message_index) {
-                            assistant_message.content = format!("Error: {}", e);
-                        }
+                    }
+                    info!("Stream completed. Received {} chunks in total.", received_chunks.len());
+                },
+                Err(e) => {
+                    info!("Failed to start stream: {}", e);
+                    let mut messages = sh.messages.write();
+                    if let Some(assistant_message) = messages.get_mut(assistant_message_index) {
+                        assistant_message.content = format!("Error: {}", e);
                     }
                 }
-            });
+            }
+        });
 
-            // Clear the input after sending
-            chat_input_value.set("".to_string());
-        }
+        // Clear the input after sending
+        chat_input_value.set("".to_string());
     };
 
     rsx! {

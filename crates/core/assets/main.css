@@ -7,6 +7,12 @@
     overflow: hidden;
 }
 
+.messages-container-empty-space {
+    /* Remove any fixed height property if it exists */
+    min-height: 100px;
+    width: 100%;
+}
+
 .message-container {
     margin-bottom: 13px;
     padding: 10px 15px;

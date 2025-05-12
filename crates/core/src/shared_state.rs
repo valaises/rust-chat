@@ -9,22 +9,16 @@ pub struct SharedState {
     
     pub models: Signal<CompletionModelState>,
     pub active_model: Signal<Option<CompletionModel>>,
+    pub empty_space_height: Signal<usize>,
+    pub message_container_bottom_element: Signal<Option<Event<MountedData>>>,
+    pub scrolled_to_bottom_element: Signal<bool>,
 }
 
 impl SharedState {
     pub fn new() -> Self {
         SharedState {
             models: Signal::new(CompletionModelState::default()),
-            // messages: Signal::new(vec![
-            //     Message {
-            //         role: "user".to_string(),
-            //         content: "Hello".to_string(),
-            //     },
-            //     Message {
-            //         role: "assistant".to_string(),
-            //         content: "# Header \nHello! **how** can I help you?\n\n`print()`\n\n$$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$".to_string(),
-            //     },
-            // ]),
+            scrolled_to_bottom_element: Signal::new(true),
             ..Default::default()
         }
     }
