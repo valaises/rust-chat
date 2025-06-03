@@ -2,20 +2,18 @@
 ![img.png](gh_media/main-image.png)
 # Development
 
-Your new bare-bones project includes minimal organization with a single `main.rs` file and a few assets.
-
-```
-project/
-├─ assets/ # Any assets that are used by the app should be placed here
-├─ src/
-│  ├─ main.rs # main.rs is the entry point to your application and currently contains all components for the app
-├─ Cargo.toml # The Cargo.toml file defines the dependencies and feature flags for your project
+Install [Rust](https://www.rust-lang.org/tools/install)
+```sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | s
 ```
 
-### Serving Your App
+Clone project
+```sh
+git clone https://github.com/valaises/rust-chat.git
+cd rust-chat
+```
 
-Run the following command in the root of your project to start developing with the default platform:
-
+Serve project for web
 ```bash
 dx serve --platform web --package core --port 8008
 ```
