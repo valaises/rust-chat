@@ -31,7 +31,6 @@ fn App() -> Element {
         document::Link { rel: "icon", href: FAVICON }
         document::Link { rel: "stylesheet", href: MAIN_CSS }
         div { class: "app",
-            h1 { "Chat Application" }
             PrimaryChat {}
         }
     }

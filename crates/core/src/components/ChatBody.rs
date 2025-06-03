@@ -123,9 +123,14 @@ pub fn MessageComponent(props: MessageProps) -> Element {
     let role = message.role.clone();
     let content = message.content.clone();
 
+    let message_class = if role == "user" {
+        "message user-message"
+    } else {
+        "message ai-message"
+    };
+
     rsx! {
-        div { class: "message-container",
-            {format!("<{role}>")}
+        div { class: "{message_class}",
             div { dangerous_inner_html: comrak::markdown_to_html(&content, &comrak::Options::default()) }
         }
     }
