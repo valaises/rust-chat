@@ -2,6 +2,8 @@ use dioxus::prelude::*;
 use dioxus::prelude::server_fn::serde::{Serialize, Deserialize};
 use serde;
 
+use crate::components::SideBar::SideBarState;
+
 
 #[derive(Clone, Default)]
 pub struct SharedState {
@@ -12,6 +14,8 @@ pub struct SharedState {
     pub empty_space_height: Signal<usize>,
     pub message_container_bottom_element: Signal<Option<Event<MountedData>>>,
     pub scrolled_to_bottom_element: Signal<bool>,
+    
+    pub side_bar_state: Signal<SideBarState>,
 }
 
 impl SharedState {
