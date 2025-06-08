@@ -37,6 +37,7 @@ pub fn SideBar() -> Element {
     
     rsx! {
         document::Link { rel: "stylesheet", href: SIDEBAR_CSS}
+        
         div {class: "sidebar {sidebar_toggle_style}",
             button {class: "sidebar-toggle-btn {sidebar_toggle_style}",
                 onclick: sidebar_toggle_btn_on_click,

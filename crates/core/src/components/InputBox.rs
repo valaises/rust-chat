@@ -1,7 +1,12 @@
 use dioxus::prelude::*;
+
 use crate::components::ModelSelector::ModelSelector;
 use crate::components::SendButton::SendButton;
 use crate::shared_state::SharedState;
+
+
+const INPUT_BOX_CSS: Asset = asset!("assets/input-box.css");
+
 
 #[component]
 pub fn InputBox() -> Element {
@@ -16,6 +21,8 @@ pub fn InputBox() -> Element {
     };
 
     rsx! {
+        document::Link { rel: "stylesheet", href: INPUT_BOX_CSS}
+        
         div {class: "textarea-box {textarea_box_sidebar_classname}",
             div {class: "textarea-wrapper",
                 textarea {

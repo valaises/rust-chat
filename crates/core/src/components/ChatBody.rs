@@ -1,5 +1,6 @@
 use web_sys::ScrollToOptions;
 use dioxus::prelude::*;
+
 use crate::shared_state::{Message, SharedState};
 
 
