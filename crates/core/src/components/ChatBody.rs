@@ -28,7 +28,7 @@ pub fn ChatBody() -> Element {
                     let rect = recent_messages_el.data.get_client_rect().await.unwrap();
                     let height = rect.height();
 
-                    let needed_space = viewport_height - height;
+                    let needed_space = viewport_height - height - 30f64;
                     if needed_space > 0.0 {
                         if empty_space_height.read().clone() != needed_space as usize {
                             empty_space_height.set(needed_space as usize);

@@ -81,7 +81,8 @@ html {
     display: flex;
     flex-direction: column;
     height: 100%;
-    /*width: 100%;*/
+    width: 60%;
+    min-width: 800px;
     margin: 0 auto;
     overflow: hidden;
     background-color: var(--color-background);
