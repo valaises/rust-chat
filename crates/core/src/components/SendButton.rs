@@ -27,11 +27,8 @@ pub fn SendButton(props: SendButtonProps) -> Element {
             return;
         }
         
-        // Add user message
         let assistant_message_index;
         {
-            // sh.empty_space_height.set(1000usize);
-            // info!("Set empty_space_height to 1000");
             let mut messages = sh.messages.write();
             messages.push(
                 Message {

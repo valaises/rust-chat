@@ -58,15 +58,46 @@ html {
     background-color: var(--color-background);
 }
 
+.main-content {
+    flex: 1;
+    display: flex;
+    max-width: calc(100% - var(--sidebar-width));
+    left: var(--sidebar-width);
+    position: relative;
+    z-index: 1;
+    transition: max-width 0.3s ease, left 0.3s ease;
+    overflow: hidden;
+    background-color: aliceblue;
+    min-height: 100vh;
+}
 
-/* Input area */
-.textarea-wrapper {
+.main-content.sidebar-collapsed {
+    max-width: calc(100% - var(--sidebar-collapsed-width));
+    left: var(--sidebar-collapsed-width);
+}
+
+.textarea-box {
     position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    max-width: 800px;
+    width: calc(100% - var(--sidebar-width));
+    left: var(--sidebar-width);
+    min-height: 10vh;
+    bottom: 0;
+    background-color: aquamarine;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.textarea-box.sidebar-collapsed {
+    width: calc(100% - var(--sidebar-collapsed-width));
+    left: var(--sidebar-collapsed-width);
+}
+
+.textarea-wrapper {
+    width: calc(min(80%, 800px));
     background-color: var(--color-white);
     border: 0.5px solid var(--color-border);
     border-radius: var(--radius-lg);
@@ -79,6 +110,8 @@ html {
     z-index: 10;
     cursor: text;
     transition: all var(--transition-normal);
+    box-sizing: border-box;
+    flex-shrink: 0;
 }
 
 .textarea-wrapper textarea {
@@ -182,7 +215,6 @@ html {
     max-width: 80%;
     word-wrap: break-word;
     font-family: var(--font-sans-serif);
-
 }
 
 .message {
