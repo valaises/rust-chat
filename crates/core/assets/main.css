@@ -29,7 +29,7 @@
     --radius-lg: 1rem;
 
     /* Transitions */
-    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 0.1s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-normal: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -67,7 +67,6 @@ html {
     z-index: 1;
     transition: max-width 0.3s ease, left 0.3s ease;
     overflow: hidden;
-    background-color: aliceblue;
     min-height: 100vh;
 }
 

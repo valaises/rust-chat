@@ -4,13 +4,12 @@
     left: var(--sidebar-width);
     min-height: 10vh;
     bottom: 0;
-    background-color: aquamarine;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
     box-sizing: border-box;
-    transition: width 0.3s ease, left 0.3s ease;
+    transition: var(--transition-fast);
 }
 
 .textarea-box.sidebar-collapsed {
@@ -31,7 +30,7 @@
     gap: 10px;
     z-index: 10;
     cursor: text;
-    transition: all var(--transition-normal);
+    transition: all var(--transition-fast);
     box-sizing: border-box;
     flex-shrink: 0;
 }

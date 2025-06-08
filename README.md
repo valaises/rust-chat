@@ -2,7 +2,7 @@
 ![img.png](gh_media/main-image.png)
 
 
-# Development (linux, macOS)
+## Installation, Development (linux, macOS)
 
 Warning: current build has hardcoded Chat Endpoint, thus, it would be accessible to you only if you are connected to my VPN network\
 [Issue](https://github.com/valaises/rust-chat/issues/5)
@@ -40,3 +40,16 @@ dx serve --platform web --package core --port 8008 --open
 ```
 
 After project is compiled and launched http://localhost:8008 should open in your browser automatically
+
+
+## Development
+
+#### Icons
+
+Please use icons from [Tabler](https://tabler.io/icons)\
+Place icons at `crates/core/assets/icons/*.svg`
+
+Example Usage:
+```rust
+const ICON_LAYOUT_SIDEBAR: Asset = asset!("assets/icons/layout-sidebar.svg");
+```
