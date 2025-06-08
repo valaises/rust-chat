@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 :root {
     /* Colors */
     --color-background: hsl(48 33.3% 97.1%);
@@ -199,6 +204,7 @@ html {
     border-radius: 20px;
     max-width: 500px;
     /*width: fit-content;*/
+    padding: 10;
 }
 
 
