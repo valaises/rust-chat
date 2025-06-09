@@ -14,6 +14,7 @@ pub struct SharedState {
     pub empty_space_height: Signal<usize>,
     pub message_container_bottom_element: Signal<Option<Event<MountedData>>>,
     pub scrolled_to_bottom_element: Signal<bool>,
+    pub active_view: Signal<ActiveView>,
     
     pub side_bar_state: Signal<SideBarState>,
 }
@@ -25,6 +26,18 @@ impl SharedState {
             scrolled_to_bottom_element: Signal::new(true),
             ..Default::default()
         }
+    }
+}
+
+#[derive(PartialEq)]
+pub enum ActiveView {
+    NewChat,
+    Chat,
+}
+
+impl Default for ActiveView {
+    fn default() -> Self {
+        ActiveView::NewChat
     }
 }
 

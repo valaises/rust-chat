@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
+
+
+.new-chat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 20vh;
+    width: calc(100% - var(--sidebar-width));
+    left: var(--sidebar-width);
+    position: relative;
+    height: 40vh;
+    padding: var(--spacing-lg);
+    text-align: center;
+    /*background-color: #e2e1da;*/
+    transition: width var(--transition-normal), left var(--transition-normal);
+}
+
+.new-chat-box.sidebar-collapsed {
+    width: calc(100% - var(--sidebar-collapsed-width));
+    left: var(--sidebar-collapsed-width);
+}
+
+.new-chat-greeting {
+    color: #3d3d3a;
+    font-family: "Lora", serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(1rem, 4vw, 2.8rem);
+    letter-spacing: 0.02em;
+}
+
+.textarea-box-new-chat {
+    width: 80vh;
+    margin: 0 auto;
+}
+
+.textarea-wrapper-new-chat {
+    background-color: var(--color-white);
+    border: 0.5px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 0.25rem var(--spacing-xl) var(--color-shadow);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    z-index: 10;
+    cursor: text;
+    transition: all var(--transition-fast);
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.textarea-wrapper-new-chat textarea {
+    border: none;
+    font-family: var(--font-sans-serif);
+    font-size: 16px;
+    resize: none;
+    outline: none;
+    height: 30px;
+    background-color: transparent;
+    letter-spacing: -0.025em;
+}

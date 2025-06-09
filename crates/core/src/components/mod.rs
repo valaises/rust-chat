@@ -3,3 +3,4 @@ pub mod SendButton;
 pub mod InputBox;
 pub mod ChatBody;
 pub mod SideBar;
+pub mod NewChat;
